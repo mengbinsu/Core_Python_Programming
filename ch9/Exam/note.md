@@ -418,7 +418,7 @@
 
 略。
 
-#### **9.17. 文本处理. 创建一个原始的文本文件编辑器. 你的程序应该是菜单驱动的, 有如下这些选项: **
+#### **9.17. 文本处理. 创建一个原始的文本文件编辑器. 你的程序应该是菜单驱动的, 有如下这些选项:**
 
 创建文件(提示输入文件名和任意行的文本输入),
 显示文件(把文件的内容显示到屏幕),
@@ -469,7 +469,7 @@
 	    maxlen = int(raw_input('max length of file: '))
 	    create(filename, value, total, maxlen)
 	
-####9.20 压缩文件. 写一小段代码, 压缩/解压缩 gzip 或 bzip 格式的文件. 可以使用命令行下的 gzip 或 bzip2 以及 GUI 程序 PowerArchiver , StuffIt , 或 WinZip 来确认你的 Python支持这两个库.
+#### 9.20 压缩文件. 写一小段代码, 压缩/解压缩 gzip 或 bzip 格式的文件. 可以使用命令行下的 gzip 或 bzip2 以及 GUI 程序 PowerArchiver , StuffIt , 或 WinZip 来确认你的 Python支持这两个库.
 
 	#!/usr/bin/env python
 
