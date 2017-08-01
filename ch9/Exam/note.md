@@ -90,9 +90,9 @@
 
 #### 9–11. Web 站点地址.
 
-** a) 编写一个 URL 书签管理程序. 使用基于文本的菜单, 用户可以添加, 修改或者删除书签数据项. 书签数据项中包含站点的名称, URL 地址, 以及一行简单说明(可选). 另外提供检索功能, 可以根据检索关键字在站点名称和 URL 两部分查找可能的匹配. 程序退出时把数据保存到一个磁盘文件中去; 再次执行时候加载保存的数据. **
+**a) 编写一个 URL 书签管理程序. 使用基于文本的菜单, 用户可以添加, 修改或者删除书签数据项. 书签数据项中包含站点的名称, URL 地址, 以及一行简单说明(可选). 另外提供检索功能, 可以根据检索关键字在站点名称和 URL 两部分查找可能的匹配. 程序退出时把数据保存到一个磁盘文件中去; 再次执行时候加载保存的数据.**
 
-** b)改进 a) 的解决方案, 把书签输出到一个合法且语法正确的 HTML 文件(.html 或 htm )中, 这样用户就可以使用浏览器查看自己的书签清单. 另外提供创建"文件夹"功能, 对相关的书签进行 分组管理. **
+**b)改进 a) 的解决方案, 把书签输出到一个合法且语法正确的 HTML 文件(.html 或 htm )中, 这样用户就可以使用浏览器查看自己的书签清单. 另外提供创建"文件夹"功能, 对相关的书签进行 分组管理.**
 
 **附加题: 请阅读 Python 的 re 模块了解有关正则表达式的资料, 使用正则表达式对用户输入 的 URL 进行验证**
 	#!/usr/bin/env python
@@ -392,14 +392,14 @@
 	if __name__ == '__main__':
 	    showmenu()
 	
-####9.13. 命令行参数 a) 什么是命令行参数, 它们有什么用? b) 写一个程序, 打印出所有的命令行参数.
+#### 9.13. 命令行参数 a) 什么是命令行参数, 它们有什么用? b) 写一个程序, 打印出所有的命令行参数.
 
     import sys
 	print str(sys.argv)
 
-####9.14. 记录结果. 修改你的计算器程序(练习 5-6 )使之接受命令行参数. 略。
+#### 9.14. 记录结果. 修改你的计算器程序(练习 5-6 )使之接受命令行参数. 略。
 
-####9–15. 复制文件. 提示输入两个文件名(或者使用命令行参数). 把第一个文件的内容复制到第二个文件中去.
+#### 9–15. 复制文件. 提示输入两个文件名(或者使用命令行参数). 把第一个文件的内容复制到第二个文件中去.
 
 	#!/usr/bin/env python
 
@@ -414,11 +414,11 @@
 	    dst = raw_input('copy to: ')
 	    copyfile(src, dst)
 
-####9.16. 文本处理. 人们输入的文字常常超过屏幕的最大宽度. 编写一个程序, 在一个文本文件中查找长度大于 80 个字符的文本行. 从最接近 80 个字符的单词断行, 把剩余文件插入到 下一行处.
+#### 9.16. 文本处理. 人们输入的文字常常超过屏幕的最大宽度. 编写一个程序, 在一个文本文件中查找长度大于 80 个字符的文本行. 从最接近 80 个字符的单词断行, 把剩余文件插入到 下一行处.
 
 略。
 
-####**9.17. 文本处理. 创建一个原始的文本文件编辑器. 你的程序应该是菜单驱动的, 有如下这些选项: **
+#### **9.17. 文本处理. 创建一个原始的文本文件编辑器. 你的程序应该是菜单驱动的, 有如下这些选项: **
 
 创建文件(提示输入文件名和任意行的文本输入),
 显示文件(把文件的内容显示到屏幕),
@@ -427,7 +427,7 @@
 退出.
 略。
 
-####9.18. 搜索文件. 提示输入一个字节值(0 - 255)和一个文件名. 显示该字符在文件中出现的次数.
+#### 9.18. 搜索文件. 提示输入一个字节值(0 - 255)和一个文件名. 显示该字符在文件中出现的次数.
 	#!/usr/bin/env python
 
 	def counts(filename, value):
@@ -605,6 +605,33 @@
 	    movefile(r'test2.tar.gz', r'test.zip', r'test2.txt')
 
 #### 9.25  通用解压程序. 创建一个程序, 接受任意数目的归档文件以及一个目标目录做为参数. 归档文件格式可以是 .zip, .tgz, .tar.gz, .gz, .bz2, .tar.bz2, .tbz 中的一种或几种. 程序会把第一个归档文件解压后放入目标目录, 把其它归档文件解压后放入以对应文件名命名的目录下 (不包括扩展名). 例如输入的文件名为 header.txt.gz 和 data.tgz ，目录为 incoming , header.txt 会被解压到 incoming 而 data.tgz 中的文件会被放入 incoming/data 
+
+	#!/usr/bin/env python
+	
+	import tarfile
+	import zipfile
+	import os
+	
+	def extract(path, filename):
+	    if filename.endswith('.zip'):
+	        with zipfile.ZipFile(filename, 'r') as f:
+	            f.extractall(path)
+	    elif filename.endswith(('.tgz', '.tar.gz', '.bz2', '.tbz', 'tar')):
+	        with tarfile.open(filename, 'r') as f:
+	            f.extractall(path)
+	
+	def decompress(target, *files):
+	    if not os.path.exists(target):
+	        os.mkdir(target)
+	    extract(target, files[0])
+	    for name in files[1:]:
+	        dirname = os.path.split(os.path.basename(name))[0]
+	        dirname = '.\\' + target + '\\' + dirname
+	        os.mkdir(dirname)
+	        extract(dirname, name)
+	
+	if __name__ == '__main__':
+	    decompress('test', 'test.zip', 'test2.tar.gz')
 
 	
 
